@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="60dp"
+        android:paddingLeft="16dip"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:background="@android:color/holo_blue_dark">
+
+        <ImageButton
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/imageButton"
+            android:background="@drawable/moto"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="16dip"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Georges"
+                android:id="@+id/firstNameTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dip"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Francisco"
+                android:id="@+id/lastNameTextView" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textOn="@string/stop"
+        android:textOff="@string/start"
+        android:checked="false"
+        android:id="@+id/toggleStart"
+        android:onClick="onStartClick"
+        android:layout_gravity="bottom"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/toggleStart"
+        android:id="@+id/counter"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+
+    <ProgressBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_centerVertical="true"
+        android:id="@+id/myProgressBar"
+        android:progress="0"
+        android:max="100"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Progress :"
+        android:id="@+id/progressValueTextView"
+        android:layout_above="@+id/myProgressBar"
+        android:layout_centerHorizontal="true" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/mySeekBar"
+        android:layout_below="@+id/myProgressBar"/>
+
+</RelativeLayout>

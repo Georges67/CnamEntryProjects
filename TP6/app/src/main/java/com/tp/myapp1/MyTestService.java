@@ -14,7 +14,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by georges on 14/12/15.
@@ -66,19 +65,14 @@ public class MyTestService extends Service
                     break;
                 case MSG_START_COUNTER:
                     Log.i("MyService", "Starting Timer");
-                    // TODO 6) create Timer and start it here
-                    m_timer = new Timer();
-                    m_timer.scheduleAtFixedRate(new TimerTask() {
-                        public void run() {
-                            onTimerTick();
-                        }
-                    }, 0, 500L);
+                    // TODO 7) create Timer and start it here
+                    // Use m_timer (already defined)
+                    // And call method onTimerTick (already defined)
 
                     break;
                 case MSG_STOP_COUNTER:
                     Log.i("MyService", "Stopping Timer");
-                    if (m_timer != null)
-                    {
+                    if (m_timer != null) {
                         m_timer.cancel();
                         m_timer = null;
                     }
@@ -89,12 +83,9 @@ public class MyTestService extends Service
         }
     }
 
-    private void sendMessageToUI(int valueToSend)
-    {
-        for (int i= m_clients.size()-1; i>=0; i--)
-        {
-            try
-            {
+    private void sendMessageToUI(int valueToSend) {
+        for (int i= m_clients.size()-1; i>=0; i--) {
+            try {
                 // Send data as an Integer
                 m_clients.get(i).send(Message.obtain(null, MSG_SET_INT_VALUE, valueToSend, 0));
 
@@ -104,8 +95,7 @@ public class MyTestService extends Service
                 Message msg = Message.obtain(null, MSG_SET_STRING_VALUE);
                 msg.setData(b);
                 m_clients.get(i).send(msg);
-            }
-            catch (RemoteException e) {
+            } catch (RemoteException e) {
                 // The client is dead. Remove it from the list; we are going through the list from back to front so this is safe to do inside the loop.
                 m_clients.remove(i);
             }
@@ -124,8 +114,7 @@ public class MyTestService extends Service
         isRunning = true;
     }
 
-    private void showNotification()
-    {
+    private void showNotification() {
         Notification.Builder mBuilder =
                 new Notification.Builder(this)
                         .setSmallIcon(R.drawable.moto)
@@ -139,8 +128,7 @@ public class MyTestService extends Service
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("MyService", "Received start id " + startId + ": " + intent);
         return START_STICKY; // run until explicitly stopped.
     }
@@ -151,29 +139,23 @@ public class MyTestService extends Service
     }
 
 
-    private void onTimerTick()
-    {
+    private void onTimerTick() {
         Log.i("TimerTick", "Timer doing work." + m_counter);
-        try
-        {
+        try {
             m_counter += incrementBy;
             sendMessageToUI(m_counter);
-        }
-        catch (Throwable t)
-        {
+        } catch (Throwable t) {
             //you should always ultimately catch all exceptions in m_timer tasks.
             Log.e("TimerTick", "Timer Tick Failed.", t);
         }
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         Log.i("MyService", ">onDestroy");
 
         super.onDestroy();
-        if (m_timer != null)
-        {
+        if (m_timer != null) {
             m_timer.cancel();
         }
         m_counter = 0;

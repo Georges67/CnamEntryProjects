@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
         public void onServiceConnected(ComponentName className, IBinder service) {
             m_service = new Messenger(service);
 
-            // TODO 4) Show message "Connected" in Activity Screen
+            // TODO 5) Show message "Connected" in Activity Screen
 
             sendMsgToService(MyTestService.MSG_REGISTER_CLIENT);
         }
@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
         public void onServiceDisconnected(ComponentName className) {
             // This is called when the connection with the service has been unexpectedly disconnected - process crashed.
             m_service = null;
-            // TODO 5) Show message "Disconnected" in Activity Screen
+            // TODO 6) Show message "Disconnected" in Activity Screen
         }
     };
 
@@ -103,35 +103,15 @@ public class MainActivity extends Activity {
 
     public void onClickStartService(View view) {
         // TODO 2) Fill StartService ToggleButton behavior
+        // Use method startService and stopService
     }
 
-    // TODO 3)  add method onCLick for bind and Start ToggleButtons
+    // TODO 3)  add method onCLick for bind ToggleButton
+    // Use methods doBindService and doUnbindService (already defined)
 
-    public void onClickBind(View view) {
-        if( m_bindButton.isChecked() ) {
-            m_bindButton.setText(m_context.getString(R.string.unbind));
-            doBindService();
-            m_startButton.setEnabled(true);
-        }
-        else
-        {
-            m_bindButton.setText(m_context.getString(R.string.bind));
-            doUnbindService();
-            m_startButton.setEnabled(false);
-            m_startButton.setChecked(false);
-            m_serviceInfoView.setText("Disconnected.");
-        }
-    }
-
-    public void onClickStart(View view) {
-        if( m_startButton.isChecked() ) {
-            m_startButton.setText(m_context.getString(R.string.stop));
-            sendMsgToService(MyTestService.MSG_START_COUNTER);
-        } else {
-            m_startButton.setText(m_context.getString(R.string.start));
-            sendMsgToService(MyTestService.MSG_STOP_COUNTER);
-        }
-    }
+    // TODO 4)  add method onCLick for bind and Start ToggleButtons
+    // Use method: sendMsgToService(MyTestService.MSG_START_COUNTER) to start counting (already defined)
+    // and sendMsgToService(MyTestService.MSG_STOP_COUNTER) to stop counting (already defined)
 
     private View.OnClickListener m_resetListener = new View.OnClickListener() {
         @Override

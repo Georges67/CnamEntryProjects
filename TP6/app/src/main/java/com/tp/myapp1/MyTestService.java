@@ -143,7 +143,8 @@ public class MyTestService extends Service
         Log.i("TimerTick", "Timer doing work." + m_counter);
         try {
             m_counter += incrementBy;
-            sendMessageToUI(m_counter);
+            // TODO 8) send message to Handler Activity to refresh display
+            // Use sendMessageToUI with m_counter parameter (already defined)
         } catch (Throwable t) {
             //you should always ultimately catch all exceptions in m_timer tasks.
             Log.e("TimerTick", "Timer Tick Failed.", t);

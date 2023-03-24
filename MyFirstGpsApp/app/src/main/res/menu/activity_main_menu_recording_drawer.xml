@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/activity_main_stop_new_path"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Arrêter le Parcours en cours" />
+    </group>
+
+    <item android:title="Configuration">
+        <menu>
+            <item
+                android:id="@+id/activity_main_exit"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="Exit" />
+        </menu>
+    </item>
+
+</menu>
